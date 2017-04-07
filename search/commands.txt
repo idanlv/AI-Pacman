@@ -20,3 +20,5 @@ python pacman.py -l testSearch -p AStarFoodSearchAgent
 python pacman.py -l trickySearch -p AStarFoodSearchAgent
 python pacman.py -l bigSearch -p ClosestDotSearchAgent -z .5 
 python pacman.py -l bigSearch -p ApproximateSearchAgent -z .5 -q 
+
+python autograder.py
