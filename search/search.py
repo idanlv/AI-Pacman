@@ -91,11 +91,11 @@ def depthFirstSearch(problem):
 
   while not frontier.isEmpty():
     curr = frontier.pop()
+    visited.append(curr[0])
     if problem.isGoalState(curr[0]):
       return curr[3]  # return the path
     for successor in problem.getSuccessors(curr[0]):
-      if successor not in visited:
-        visited.append(successor)
+      if successor[0] not in visited:
         frontier.push((successor[0], successor[1], successor[2], curr[3] + [successor[1]]))
 
 def breadthFirstSearch(problem):
