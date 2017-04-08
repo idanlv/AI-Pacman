@@ -357,8 +357,10 @@ def cornersHeuristic(state, problem):
     return 0
 
   # set first as min path to corner
-  min_path = util.manhattanDistance(state[0], next(iter(unvisited_corners)))
+  first_corner = next(iter(unvisited_corners))
+  min_path = util.manhattanDistance(state[0], first_corner)
 
+  # check min path for all reaming corners
   for corner in unvisited_corners:
       dst = util.manhattanDistance(state[0], corner)
       if min_path < dst:
