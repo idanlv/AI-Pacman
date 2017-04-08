@@ -351,22 +351,48 @@ def cornersHeuristic(state, problem):
   corners = problem.corners # These are the corner coordinates
   walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
-  unvisited_corners = state[1]
+  unvisited_corners = list(state[1])
   # No more corners
   if len(unvisited_corners) == 0:
     return 0
 
-  # set first as min path to corner
-  first_corner = next(iter(unvisited_corners))
-  min_path = util.manhattanDistance(state[0], first_corner)
+  # get the nearest point
+  nearset_corner = findNearsetPoint(state[0], unvisited_corners)
+  path_to_nearset_corner = util.manhattanDistance(state[0], nearset_corner)
 
-  # check min path for all reaming corners
-  for corner in unvisited_corners:
-      dst = util.manhattanDistance(state[0], corner)
-      if min_path < dst:
-        min_path = dst
+  if nearset_corner in unvisited_corners:
+    unvisited_corners.remove(nearset_corner)
 
+  pos = nearset_corner
+  path_from_next_point = 0
+
+  while unvisited_corners:
+    nearset_point = findNearsetPoint(pos, unvisited_corners)
+    path_from_next_point += util.manhattanDistance(pos, nearset_point)
+    pos = nearset_point
+    unvisited_corners.remove(pos)
+
+  min_path = path_to_nearset_corner + path_from_next_point
   return min_path
+
+
+# return the nearest point to a given position
+def findNearsetPoint(pos, points):
+  if len(points) == 0:
+    return pos
+  if len(points) == 1:
+    return points[0]
+
+  nearset = points[0]
+  mindst = util.manhattanDistance(pos, points[0])
+
+  for point in points:
+    dst = util.manhattanDistance(pos, point)
+    if dst < mindst:
+      mindst = dst
+      nearset = point
+
+  return nearset
 
 
 class AStarCornersAgent(SearchAgent):
