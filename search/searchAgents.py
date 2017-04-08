@@ -483,8 +483,43 @@ def foodHeuristic(state, problem):
   Subsequent calls to this heuristic can access problem.heuristicInfo['wallCount']
   """
   position, foodGrid = state
-  "*** YOUR CODE HERE ***"
-  return 0
+
+  unvisited_food = foodGrid.asList()
+  # No more food
+  if len(unvisited_food) == 0:
+    return 0
+
+  # get the nearest food
+  nearset_food = findNearsetPoint(position, unvisited_food)
+  path_to_nearset_food = util.manhattanDistance(position, nearset_food)
+
+  if nearset_food in unvisited_food:
+    unvisited_food.remove(nearset_food)
+
+  furthest_food_from_next = findFurthestPoint(nearset_food, unvisited_food)
+  path_from_next_point = util.manhattanDistance(nearset_food, furthest_food_from_next)
+
+  return path_to_nearset_food + path_from_next_point
+
+
+# return the furthest point from a given position
+def findFurthestPoint(pos, points):
+  if len(points) == 0:
+    return pos
+  if len(points) == 1:
+    return points[0]
+
+  furthest = points[0]
+  maxdst = util.manhattanDistance(pos, points[0])
+
+  for point in points:
+    dst = util.manhattanDistance(pos, point)
+    if dst > maxdst:
+      maxdst = dst
+      furthest = point
+
+  return furthest
+
   
 class ClosestDotSearchAgent(SearchAgent):
   "Search for all food using a sequence of searches"
