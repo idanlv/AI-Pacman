@@ -35,21 +35,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/search.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="164" column="157" lean-forward="false" selection-start-line="164" selection-start-column="157" selection-end-line="164" selection-end-column="157" />
+            <state relative-caret-position="495">
+              <caret line="156" column="31" lean-forward="true" selection-start-line="156" selection-start-column="31" selection-end-line="156" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchAgents.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="searchAgents.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/searchAgents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="244" column="16" lean-forward="true" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
+            <state relative-caret-position="195">
+              <caret line="346" column="2" lean-forward="true" selection-start-line="346" selection-start-column="2" selection-end-line="346" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -82,6 +82,9 @@
       <find>st</find>
       <find>MAn</find>
       <find>manh</find>
+      <find>Heuristic</find>
+      <find>corn</find>
+      <find>CornersProblem</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -650,18 +653,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/searchAgents.py">
+    <entry file="file://$PROJECT_DIR$/search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="244" column="16" lean-forward="true" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
+        <state relative-caret-position="495">
+          <caret line="156" column="31" lean-forward="true" selection-start-line="156" selection-start-column="31" selection-end-line="156" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search.py">
+    <entry file="file://$PROJECT_DIR$/searchAgents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="164" column="157" lean-forward="false" selection-start-line="164" selection-start-column="157" selection-end-line="164" selection-end-column="157" />
+        <state relative-caret-position="195">
+          <caret line="346" column="2" lean-forward="true" selection-start-line="346" selection-start-column="2" selection-end-line="346" selection-end-column="2" />
           <folding />
         </state>
       </provider>
