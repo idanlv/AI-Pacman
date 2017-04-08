@@ -136,7 +136,9 @@ def uniformCostSearch(problem):
     if problem.isGoalState(curr[0]):
       return curr[3]  # return the path
     for successor in problem.getSuccessors(curr[0]):
-        frontier.push((successor[0], successor[1], curr[2] + successor[2], curr[3] + [successor[1]]), curr[2] + successor[2])
+        successor_state = (successor[0], successor[1], curr[2] + successor[2], curr[3] + [successor[1]])
+        successor_priority = curr[2] + successor[2]
+        frontier.push(successor_state, successor_priority)
 
 def nullHeuristic(state, problem=None):
   """
@@ -162,7 +164,9 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     if problem.isGoalState(curr[0]):
       return curr[3]  # return the path
     for successor in problem.getSuccessors(curr[0]):
-        frontier.push((successor[0], successor[1], curr[2] + successor[2], curr[3] + [successor[1]]), curr[2] + successor[2] + heuristic(successor[0],problem))
+        successor_state = (successor[0], successor[1], curr[2] + successor[2], curr[3] + [successor[1]])
+        successor_priority = curr[2] + successor[2] + heuristic(successor[0], problem)
+        frontier.push(successor_state, successor_priority)
     
   
 # Abbreviations
