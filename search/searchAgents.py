@@ -276,17 +276,15 @@ class CornersProblem(search.SearchProblem):
         print 'Warning: no food in corner ' + str(corner)
     self._expanded = 0 # Number of search nodes expanded
     
-    "*** YOUR CODE HERE ***"
+    self.startState = (self.startingPosition, self.corners)
     
   def getStartState(self):
     "Returns the start state (in your state space, not the full Pacman state space)"
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    return self.startState
     
   def isGoalState(self, state):
     "Returns whether this search state is a goal state of the problem"
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    return len(state[1]) == 0  # true only if there are not more corners
        
   def getSuccessors(self, state):
     """
@@ -308,8 +306,16 @@ class CornersProblem(search.SearchProblem):
       #   dx, dy = Actions.directionToVector(action)
       #   nextx, nexty = int(x + dx), int(y + dy)
       #   hitsWall = self.walls[nextx][nexty]
-      
-      "*** YOUR CODE HERE ***"
+      x,y = state[0]
+      dx, dy = Actions.directionToVector(action)
+      nextx, nexty = int(x + dx), int(y + dy)
+      hitsWall = self.walls[nextx][nexty]
+      if not hitsWall:
+        corners = set(state[1])
+        if (nextx,nexty) in corners:
+            corners.remove((nextx, nexty))
+        nextState = ((nextx,nexty),corners)
+        successors.append((nextState,action,1))
       
     self._expanded += 1
     return successors
@@ -344,7 +350,7 @@ def cornersHeuristic(state, problem):
   """
   corners = problem.corners # These are the corner coordinates
   walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
-  
+
   "*** YOUR CODE HERE ***"
   return 0 # Default to trivial solution
 
