@@ -492,12 +492,16 @@ def foodHeuristic(state, problem):
   # get the nearest food
   nearset_food = findNearsetPoint(position, unvisited_food)
   path_to_nearset_food = util.manhattanDistance(position, nearset_food)
+  #@Change the above with the following for better results (1/2)
+  #path_to_nearset_food = mazeDistance(position, nearset_food, problem.startingGameState)
 
   if nearset_food in unvisited_food:
     unvisited_food.remove(nearset_food)
 
   furthest_food_from_next = findFurthestPoint(nearset_food, unvisited_food)
   path_from_next_point = util.manhattanDistance(nearset_food, furthest_food_from_next)
+  #@Change the above with the following for better results (2/2)
+  #path_from_next_point = mazeDistance(nearset_food, furthest_food_from_next, problem.startingGameState)
 
   return path_to_nearset_food + path_from_next_point
 
