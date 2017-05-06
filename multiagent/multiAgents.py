@@ -126,41 +126,42 @@ class MinimaxAgent(MultiAgentSearchAgent):
         Returns the total number of agents in the game
     """
     pacman = 0
-    depth = self.depth
-    agents = gameState.getNumAgents()
     legal_actions = gameState.getLegalActions(pacman)
     actions = util.PriorityQueue()
+    iteration = self.depth * gameState.getNumAgents()
 
     for action in legal_actions:
-      actions.push(action, self.minMaxVals(gameState.generateSuccessor(pacman, action), agents, depth))
+      # remove stop action
+      if action is Directions.STOP:
+        continue
+      actions.push(action, (self.minMaxVals(gameState.generateSuccessor(pacman, action), pacman, iteration - 1) * -1))
 
     return actions.pop()
 
-  def minMaxVals(self, state, agent, depth):
+  def minMaxVals(self, state, agent, iteration):
 
-    if state.isWin() or state.isLose() or depth == 0:
+    if state.isWin() or state.isLose() or iteration == 0:
       return self.evaluationFunction(state)
 
-    agent += 1
-    if agent >= state.getNumAgents():
-      agent = 0
+    # round robin agent
+    agent = (agent + 1) % state.getNumAgents()
 
-    moves = state.getLegalActions(agent)
-    movesValues = []
+    legal_actions = state.getLegalActions(agent)
+    actions = []
 
     # Only pacman == 0 so all other are min agents
     if agent > 0:
-      for move in moves:
-        movesValues.append(self.minMaxVals(state.generateSuccessor(agent, move), agent, depth))
-      return min(movesValues)
-
-    # All ghosts are done playing, move 1 depth
-    depth -= 1
+      for action in legal_actions:
+        actions.append(self.minMaxVals(state.generateSuccessor(agent, action), agent, iteration - 1))
+      return min(actions)
 
     # Pacman's turn
-    for move in moves:
-      movesValues.append(self.minMaxVals(state.generateSuccessor(agent, move), agent, depth))
-    return max(movesValues)
+    for action in legal_actions:
+      # remove stop action
+      if action is Directions.STOP:
+        continue
+      actions.append(self.minMaxVals(state.generateSuccessor(agent, action), agent, iteration -1))
+    return max(actions)
 
 
 
