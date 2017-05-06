@@ -125,8 +125,45 @@ class MinimaxAgent(MultiAgentSearchAgent):
       gameState.getNumAgents():
         Returns the total number of agents in the game
     """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    pacman = 0
+    depth = self.depth
+    agents = gameState.getNumAgents()
+    legal_actions = gameState.getLegalActions(pacman)
+    actions = util.PriorityQueue()
+
+    for action in legal_actions:
+      actions.push(action, self.minMaxVals(gameState.generateSuccessor(pacman, action), agents, depth))
+
+    return actions.pop
+
+  def minMaxVals(self, state, agent, depth):
+
+    if state.isWin() or state.isLose() or depth == 0:
+      return self.evaluationFunction(state)
+
+    agent += 1
+    if agent > state.getNumAgents():
+      agent = 0
+
+    moves = state.getLegalActions(agent)
+    movesValues = []
+
+    # Only pacman == 0 so all other are min agents
+    if agent > 0:
+      for move in moves:
+        movesValues.append(self.minMaxVals(state.generateSuccessor(agent, move), agent, depth))
+      return min(movesValues)
+
+    # All ghosts are done playing, move 1 depth
+    depth -= 1
+
+    # Pacman's turn
+    for move in moves:
+      movesValues.append(self.minMaxVals(state.generateSuccessor(agent, move), agent, depth))
+    return max(movesValues)
+
+
+
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
   """
