@@ -125,8 +125,46 @@ class MinimaxAgent(MultiAgentSearchAgent):
       gameState.getNumAgents():
         Returns the total number of agents in the game
     """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    pacman = 0
+    legal_actions = gameState.getLegalActions(pacman)
+    actions = util.PriorityQueue()
+    iteration = self.depth * gameState.getNumAgents()
+
+    for action in legal_actions:
+      # remove stop action
+      if action is Directions.STOP:
+        continue
+      actions.push(action, (self.minMaxVals(gameState.generateSuccessor(pacman, action), pacman, iteration - 1) * -1))
+
+    return actions.pop()
+
+  def minMaxVals(self, state, agent, iteration):
+
+    if state.isWin() or state.isLose() or iteration == 0:
+      return self.evaluationFunction(state)
+
+    # round robin agent
+    agent = (agent + 1) % state.getNumAgents()
+
+    legal_actions = state.getLegalActions(agent)
+    actions = []
+
+    # Only pacman == 0 so all other are min agents
+    if agent > 0:
+      for action in legal_actions:
+        actions.append(self.minMaxVals(state.generateSuccessor(agent, action), agent, iteration - 1))
+      return min(actions)
+
+    # Pacman's turn
+    for action in legal_actions:
+      # remove stop action
+      if action is Directions.STOP:
+        continue
+      actions.append(self.minMaxVals(state.generateSuccessor(agent, action), agent, iteration -1))
+    return max(actions)
+
+
+
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
   """
