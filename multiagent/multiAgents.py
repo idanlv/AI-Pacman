@@ -134,7 +134,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
     for action in legal_actions:
       actions.push(action, self.minMaxVals(gameState.generateSuccessor(pacman, action), agents, depth))
 
-    return actions.pop
+    return actions.pop()
 
   def minMaxVals(self, state, agent, depth):
 
@@ -142,7 +142,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
       return self.evaluationFunction(state)
 
     agent += 1
-    if agent > state.getNumAgents():
+    if agent >= state.getNumAgents():
       agent = 0
 
     moves = state.getLegalActions(agent)
