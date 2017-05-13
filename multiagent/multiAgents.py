@@ -68,7 +68,44 @@ class ReflexAgent(Agent):
     newScaredTimes = [ghostState.scaredTimer for ghostState in newGhostStates]
 
     "*** YOUR CODE HERE ***"
-    return successorGameState.getScore()
+
+    # get the closest food by creating PriorityQueue
+    oldFoodByDistance = util.PriorityQueue()
+    for food in oldFood.asList():
+      oldFoodByDistance.push(food, util.manhattanDistance(newPos, food))
+    closestFoodPos = oldFoodByDistance.pop()
+
+    # weigh food as the distance from the closest food
+    foodWeight = util.manhattanDistance(newPos, closestFoodPos)
+
+    # get the closest ghost by creating PriorityQueue
+    ghostsByDistance = util.PriorityQueue()
+    for ghost in newGhostStates:
+      ghostsByDistance.push(ghost.getPosition(), util.manhattanDistance(newPos, ghost.getPosition()))
+
+    # no ghosts here
+    if ghostsByDistance.isEmpty():
+      ghostWeight = 0
+
+    else:
+      # get closest ghost
+      closestGhostPos = ghostsByDistance.pop()
+
+      # ghost at new pos !, worst case
+      if util.manhattanDistance(newPos, closestGhostPos) == 0:
+        return -float("inf")
+
+      #! set ghost score as negative, give better results when pacman is further from a ghost
+      ghostWeight = -2 * 1 / util.manhattanDistance(newPos, closestGhostPos)
+
+    if foodWeight == 0:
+      # next move is food, give better score
+      score = 2 + ghostWeight
+    else:
+      # set score to give better results fore closer food and weigh in the ghosts proximity
+      score = 1 / float(foodWeight) + ghostWeight
+
+    return score
 
 def scoreEvaluationFunction(currentGameState):
   """
@@ -130,6 +167,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
     actions = util.PriorityQueue()
     iteration = self.depth * gameState.getNumAgents()
 
+    # check all legal actions and keep scores in a reversed PriorityQueue (max) for the best options to return
     for action in legal_actions:
       # remove stop action
       if action is Directions.STOP:
@@ -163,9 +201,6 @@ class MinimaxAgent(MultiAgentSearchAgent):
       actions.append(self.minMaxVals(state.generateSuccessor(agent, action), agent, iteration -1))
     return max(actions)
 
-
-
-
 class AlphaBetaAgent(MultiAgentSearchAgent):
   """
     Your minimax agent with alpha-beta pruning (question 3)
@@ -183,6 +218,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
     a = -float("inf")
     b = float("inf")
 
+    # check all legal actions of pacman
     for action in legal_actions:
       # remove stop action
       if action is Directions.STOP:
@@ -236,6 +272,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
       # get next agent, round robin agent
       next_agent = (agent + 1) % state.getNumAgents()
 
+      # if next is pacman(0), we need to check the max value
       if next_agent == 0:
         v = min(v, self.maxValue(successor, next_agent, iteration - 1, a, b))
       else:
