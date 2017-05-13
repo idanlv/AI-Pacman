@@ -177,41 +177,76 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
     """
     pacman = 0
     legal_actions = gameState.getLegalActions(pacman)
-    actions = util.PriorityQueue()
     iteration = self.depth * gameState.getNumAgents()
+
+    v = -float("inf")
+    a = -float("inf")
+    b = float("inf")
 
     for action in legal_actions:
       # remove stop action
       if action is Directions.STOP:
         continue
-      actions.push(action, (self.minMaxVals(gameState.generateSuccessor(pacman, action), pacman, iteration - 1) * -1))
 
-    return actions.pop()
+      v = max(v, self.minValue(gameState.generateSuccessor(pacman, action), pacman + 1, iteration - 1, a, b))
 
-  def minMaxVals(self, state, agent, iteration):
+      # redundent at top level, here for the algo structure
+      if v > b:
+        next_action = action
+        break
 
+      if a < v:
+        next_action = action
+        a = v
+
+    return next_action
+
+  def maxValue(self, state, agent, iteration, a, b):
     if state.isWin() or state.isLose() or iteration == 0:
       return self.evaluationFunction(state)
 
-    # round robin agent
-    agent = (agent + 1) % state.getNumAgents()
-
+    v = -float("inf")
     legal_actions = state.getLegalActions(agent)
-    actions = []
 
-    # Only pacman == 0 so all other are min agents
-    if agent > 0:
-      for action in legal_actions:
-        actions.append(self.minMaxVals(state.generateSuccessor(agent, action), agent, iteration - 1))
-      return min(actions)
-
-    # Pacman's turn
     for action in legal_actions:
-      # remove stop action
+      # remove stop action - Only for max agent (pacman)
       if action is Directions.STOP:
         continue
-      actions.append(self.minMaxVals(state.generateSuccessor(agent, action), agent, iteration - 1))
-    return max(actions)
+
+      successor = state.generateSuccessor(agent, action)
+      # get next agent, round robin agent
+      next_agent = (agent + 1) % state.getNumAgents()
+
+      v = max(v, self.minValue(successor, next_agent, iteration -1, a, b))
+      if v > b:
+        return v
+      a = max(a, v)
+
+    return v
+
+  def minValue(self, state, agent, iteration, a, b):
+    if state.isWin() or state.isLose() or iteration == 0:
+      return self.evaluationFunction(state)
+
+    v = float("inf")
+    legal_actions = state.getLegalActions(agent)
+
+    for action in legal_actions:
+      successor = state.generateSuccessor(agent, action)
+      # get next agent, round robin agent
+      next_agent = (agent + 1) % state.getNumAgents()
+
+      if next_agent == 0:
+        v = min(v, self.maxValue(successor, next_agent, iteration - 1, a, b))
+      else:
+        v = min(v, self.minValue(successor, next_agent, iteration - 1, a, b))
+
+      if v < a:
+        return v
+      b = min(b, v)
+
+    return v
+
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
   """

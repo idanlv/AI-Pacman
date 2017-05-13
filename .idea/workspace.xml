@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4edf282d-8eff-4bfa-a788-a9d724da9250" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/game.py" afterPath="$PROJECT_DIR$/multiagent/game.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/ghostAgents.py" afterPath="$PROJECT_DIR$/multiagent/ghostAgents.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/graphicsDisplay.py" afterPath="$PROJECT_DIR$/multiagent/graphicsDisplay.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/graphicsUtils.py" afterPath="$PROJECT_DIR$/multiagent/graphicsUtils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/keyboardAgents.py" afterPath="$PROJECT_DIR$/multiagent/keyboardAgents.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/layout.py" afterPath="$PROJECT_DIR$/multiagent/layout.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/pacman.py" afterPath="$PROJECT_DIR$/multiagent/pacman.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/pacmanAgents.py" afterPath="$PROJECT_DIR$/multiagent/pacmanAgents.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/textDisplay.py" afterPath="$PROJECT_DIR$/multiagent/textDisplay.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/util.py" afterPath="$PROJECT_DIR$/multiagent/util.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiagent/multiAgents.py" afterPath="$PROJECT_DIR$/multiagent/multiAgents.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,7 +20,7 @@
     <SUITE FILE_PATH="coverage/AI_PACMAN$MinimaxAgent__D4___n1000_.coverage" NAME="MinimaxAgent (D4) (n100) Coverage Results" MODIFIED="1494103257435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/multiagent" />
     <SUITE FILE_PATH="coverage/AI_PACMAN$ReflexAgent__TC_.coverage" NAME="ReflexAgent (TC) Coverage Results" MODIFIED="1494082386902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/multiagent/" />
     <SUITE FILE_PATH="coverage/AI_PACMAN$ReflexAgent.coverage" NAME="ReflexAgent Coverage Results" MODIFIED="1494080633472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/multiagent/" />
-    <SUITE FILE_PATH="coverage/AI_PACMAN$AlphaBetaAgent__D3_.coverage" NAME="AlphaBetaAgent (D3) Coverage Results" MODIFIED="1494107169439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/multiagent" />
+    <SUITE FILE_PATH="coverage/AI_PACMAN$AlphaBetaAgent__D3_.coverage" NAME="AlphaBetaAgent (D3) Coverage Results" MODIFIED="1494690269900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/multiagent" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -57,8 +48,18 @@
       <file leaf-file-name="multiAgents.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiagent/multiAgents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-528">
-              <caret line="201" column="50" lean-forward="false" selection-start-line="201" selection-start-column="50" selection-end-line="201" selection-end-column="50" />
+            <state relative-caret-position="8">
+              <caret line="190" column="109" lean-forward="true" selection-start-line="190" selection-start-column="109" selection-end-line="190" selection-end-column="109" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multiagentTestClasses.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/multiagent/multiagentTestClasses.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -82,6 +83,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/multiagent/multiagentTestClasses.py" />
         <option value="$PROJECT_DIR$/multiagent/multiAgents.py" />
       </list>
     </option>
@@ -553,14 +555,14 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -685,10 +687,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/multiagent/multiagentTestClasses.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/multiagent/multiAgents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-528">
-          <caret line="201" column="50" lean-forward="false" selection-start-line="201" selection-start-column="50" selection-end-line="201" selection-end-column="50" />
+        <state relative-caret-position="8">
+          <caret line="190" column="109" lean-forward="true" selection-start-line="190" selection-start-column="109" selection-end-line="190" selection-end-column="109" />
           <folding />
         </state>
       </provider>
